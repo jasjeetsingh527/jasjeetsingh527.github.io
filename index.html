@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI base WEATHER App </title>
+    <style>
+        body {
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+        }
+
+        .card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            border: none;
+            width: 50%;
+            text-align: center;
+        }
+
+        .close {
+            color: black;
+            float: right;
+            font-size: x-large
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red cursor:pointer
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <form>
+            <div class="form-group">
+                <input type="text" placeholder="Enter City Name" id="cityName">
+            </div>
+            <p id="error"></p>
+            <div class="form-group">
+                <input type="submit" value="Submit" onclick="showModal(event)">
+            </div>
+        </form>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <p>¯\_(ツ)_/¯ I don't know, look outside. ¯\_(ツ)_/¯</p>
+        </div>
+
+    </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        function showModal(event) {
+            document.getElementById('error').innerHTML = ""
+            if (document.getElementById('cityName').value == "") {
+                document.getElementById('error').innerHTML = "Please enter your city name"
+                event.preventDefault();
+                return false;
+            } else {
+                event.preventDefault();
+                modal.style.display = "block";
+            }
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
